@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{sivaSAFRANshort}
+\chead{Assignment 1}
+\begin{document}
+	\begin{enumerate}
+		\item
+		Consider the following integral:
+		$$I_n = \dint_0^1 x^{2n} \sin(\pi x) dx$$
+		\begin{enumerate}
+			\item
+			Obtain a recurrence for $I_n$ in terms of $I_{n-1}$. (HINT: Integration by parts)
+			\item
+			Evaluate $I_0$ by hand
+			\item
+			Use the recurrence to obtain $I_n$ for $n \in \{1,2,\ldots,20\}$ in python.
+			\item
+			Obtain the integral using the builtin {\color{magenta}\textbf{scipy.integrate.quad}} command in python and compare the results to above.
+			\item
+			Explain your observation. We will see later in this course how to evaluate integrals to high accuracy.
+		\end{enumerate}
+		\item
+		Recall the coffee-cooling problem discussed in class. In this assignment, let's assume that the cooling rate $r$ is not a constant but decays with time as $r(t) = \exp(-\alpha t^2)$. Take the initial temperature of the coffee-cup to be $85^{\circ}$C and the surrounding temperature to be $25^{\circ}$C. Explore the solution for values $\alpha \in \{0,1,2,3}$ per sq. minute. Note that $\alpha = 0$ should give us the solution for constant decay rate.
+		\item
+		Find the most accurate formula for the first derivative of the function $f$ at $x_i$ utilising known values of $f$ at $x_{i-1},x_i,x_{i+1}$ and $x_{i+2}$. The points are uniformly spaced. Give the leading error term and state the order of the method.
+		\item
+		A general Pad\'e type boundary scheme (at $i=0$) for the first derivative which doesn't alter the tridiagonal structure of the matrix can be written as
+		$$f_0'+\alpha f_1' = \dfrac1h \bkt{af_0+bf_1+cf_2+df_3}$$
+		\begin{enumerate}
+			\item
+			Obtain $a,b,c,d$ in terms of $\alpha$ so that the scheme is at least third-order accurate.
+			\item
+			Which $\alpha$ would you choose and why?
+			\item
+			Find all the coefficients so that the scheme would be fourth-order accurate.
+		\end{enumerate}
+		\item
+		In numerical solution of boundary value problems in differential equations, we can sometimes use the physics of the problem not only to enforce the boundary conditions but also to maintain high-order accuracy near the boundary.
+	\end{enumerate}
+\end{document}
