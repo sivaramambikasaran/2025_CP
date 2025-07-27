@@ -19,7 +19,7 @@
 			Explain your observation. We will see later in this course how to evaluate integrals to high accuracy.
 		\end{enumerate}
 		\item
-		Recall the coffee-cooling problem discussed in class. In this assignment, let's assume that the cooling rate $r$ is not a constant but decays with time as $r(t) = \exp(-\alpha t^2)$. Take the initial temperature of the coffee-cup to be $85^{\circ}$C and the surrounding temperature to be $25^{\circ}$C. Explore the solution for values $\alpha \in \{0,1,2,3}$ per sq. minute. Note that $\alpha = 0$ should give us the solution for constant decay rate.
+		Recall the coffee-cooling problem discussed in class. In this assignment, let's assume that the cooling rate $r$ is not a constant but decays with time as $r(t) = \exp(-\alpha t^2)$. Take the initial temperature of the coffee-cup to be $85^{\circ}$C and the surrounding temperature to be $25^{\circ}$C. Explore the solution for values $\alpha \in \{0,1,2,3\}$ per sq. minute. Note that $\alpha = 0$ should give us the solution for constant decay rate.
 		\item
 		Find the most accurate formula for the first derivative of the function $f$ at $x_i$ utilising known values of $f$ at $x_{i-1},x_i,x_{i+1}$ and $x_{i+2}$. The points are uniformly spaced. Give the leading error term and state the order of the method.
 		\item
@@ -34,6 +34,36 @@
 			Find all the coefficients so that the scheme would be fourth-order accurate.
 		\end{enumerate}
 		\item
-		In numerical solution of boundary value problems in differential equations, we can sometimes use the physics of the problem not only to enforce the boundary conditions but also to maintain high-order accuracy near the boundary.
+		In numerical solution of boundary value problems in differential equations, we can sometimes use the physics of the problem not only to enforce the boundary conditions but also to maintain high-order accuracy near the boundary.\\
+		Suppose we want to numerically solve the following boundary value problem
+		$$\dfrac{d^2y}{dx^2}+y = x^3, \text{ where }0\leq x \leq 1$$
+		with Neumann boundary conditions:
+		$$y'(0) = y'(1) = 0$$
+		Discretize the domain using grid points $x_i = (i-0.5)h$, $i \in \{1,2,\ldots,N\}$. Note that there are no grid points on the boundaries. In this problem, $y_i$ is the numerical estimate of $y$ at $x_i$. Buy using a finite difference scheme, we can estimate $y_i''$ in terms of linear combinations of $y_i$'s and transform the ODE into a linear system of equations. Use the Pad\'e formula for the interior points.
+		\begin{enumerate}
+			\item
+			For the left boundary, derive a third order Pad\'e scheme to approximate $y_0''$ in the following form:
+			$$y_1''+b_2y_2'' = a_1y_1 + a_2y_2 + a_3y_3 + a_4y_b' + \mathcal{O}\bkt{h^3}$$
+			where $y_b' = y'(0)$, which is known from the boundary condition at $x=0$.
+			\item
+			Repeat the previous step for the right boundary.
+			\item
+			Using the finite difference formulae derived above, we can write the following linear relation:
+			$$A \begin{bmatrix}
+			y_1''\\
+			y_2''\\
+			\vdots\\
+			y_N''
+			\end{bmatrix}
+			=B \begin{bmatrix}
+			y_1\\
+			y_2\\
+			\vdots\\
+			y_N
+			\end{bmatrix}$$
+			What are the elements of the matrices $A$ and $B$ operating on the interior and boundary nodes?
+			\item
+			Use this relationship to transform the ODE into a system with $y_i$'s as unknowns. Use $N=24$ and solve this system. Do you actually have to invert $A$? Plot the exact and numerical solutions. Discuss your result. How are the Neumann boundary conditions enforced into the discretized boundary value problem?
+		\end{enumerate}
 	\end{enumerate}
 \end{document}
